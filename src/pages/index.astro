@@ -1,26 +1,280 @@
 ---
-title: "Welcome to my Blog!"
-description: "Chào mừng bạn đến với Blog101!"
+const siteTitle = "Blog101";
+const siteDesc =
+  "Blog cá nhân về Cybersecurity, Windows, Sysmon, Malware Analysis và Detection Engineering.";
+
+const posts = [
+  {
+    title: "Winlog and Sysmon 101",
+    date: "27 Mar, 2026",
+    description:
+      "Tổng quan về Windows Event Log và Sysmon, cách chúng hỗ trợ giám sát, điều tra và phát hiện hành vi tấn công trên Windows.",
+    link: "#",
+  },
+  {
+    title: "Malware Persistence in Windows",
+    date: "26 Mar, 2026",
+    description:
+      "Các kỹ thuật persistence phổ biến trên Windows và những nguồn log có thể giúp phát hiện chúng trong quá trình điều tra.",
+    link: "#",
+  },
+];
 ---
 
-<!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{Astro.site.title}</title>
-    <meta name="description" content={Astro.site.description} />
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDesc} />
+    <style>
+      :root {
+        --bg: #1f2940;
+        --bg-soft: #24314d;
+        --text: #f3f4f6;
+        --muted: #d6d9df;
+        --accent: #f59e0b;
+        --accent-border: #d97706;
+        --line: #d97706;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Consolas, "Courier New", monospace;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 22px 60px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 22px;
+        border-bottom: 2px solid var(--line);
+      }
+
+      .brand {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text);
+      }
+
+      .nav {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 1.15rem;
+        transition: color 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        padding: 54px 0 26px;
+      }
+
+      .hero h1 {
+        margin: 0 0 18px;
+        font-size: 4.4rem;
+        line-height: 1.05;
+        letter-spacing: 0.5px;
+      }
+
+      .hero p {
+        margin: 0 0 14px;
+        max-width: 820px;
+        color: var(--muted);
+        font-size: 1.35rem;
+        line-height: 1.8;
+      }
+
+      .social {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      .social a {
+        text-decoration: none;
+        color: var(--text);
+        border: 1px solid transparent;
+        padding: 4px 8px;
+        border-radius: 8px;
+        transition: 0.2s ease;
+      }
+
+      .social a:hover {
+        color: var(--accent);
+        border-color: var(--accent-border);
+      }
+
+      .section {
+        margin-top: 26px;
+        padding-top: 30px;
+        border-top: 2px solid var(--line);
+      }
+
+      .section h2 {
+        margin: 0 0 28px;
+        font-size: 2.2rem;
+      }
+
+      .post {
+        margin-bottom: 40px;
+      }
+
+      .post-title {
+        text-decoration: none;
+        color: var(--accent);
+        font-size: 1.85rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      .post-title:hover {
+        text-decoration: underline;
+      }
+
+      .meta {
+        margin: 10px 0 12px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .post p {
+        margin: 0;
+        color: var(--text);
+        font-size: 1.22rem;
+        line-height: 1.85;
+      }
+
+      .footer {
+        margin-top: 40px;
+        padding-top: 22px;
+        border-top: 2px solid var(--line);
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .brand {
+          font-size: 1.9rem;
+        }
+
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .hero p {
+          font-size: 1.08rem;
+        }
+
+        .section h2 {
+          font-size: 1.8rem;
+        }
+
+        .post-title {
+          font-size: 1.45rem;
+        }
+
+        .post p {
+          font-size: 1.05rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <h1>Blog101</h1>
-      <p>{Astro.site.description}</p>
-    </header>
-    <main>
-      <section>
-        <h2>Welcome to my first blog post!</h2>
-        <p>This is just a starting point. I will be posting more soon!</p>
+    <div class="container">
+      <header class="topbar">
+        <a href="#" class="brand">Blog101</a>
+
+        <nav class="nav">
+          <a href="#posts">Posts</a>
+          <a href="#tags">Tags</a>
+          <a href="#about">About</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="about">
+        <h1>ThiendZN</h1>
+        <p>
+          Đây là nơi mình lưu các bài viết về Cybersecurity, Windows Logging,
+          Sysmon, Malware Analysis, DFIR và Detection Engineering.
+        </p>
+        <p>
+          Mục tiêu của blog là ghi lại kiến thức theo hướng dễ đọc, thực tế và
+          có thể dùng lại khi học tập, nghiên cứu hoặc viết báo cáo kỹ thuật.
+        </p>
+
+        <div class="social">
+          <span>Social Links:</span>
+          <a href="https://github.com/ThiendZN" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:thiendepzai0202@gmail.com">Email</a>
+          <a href="#">Facebook</a>
+        </div>
       </section>
-    </main>
+
+      <section class="section" id="posts">
+        <h2>Recent Posts</h2>
+
+        {
+          posts.map((post) => (
+            <article class="post">
+              <a class="post-title" href={post.link}>{post.title}</a>
+              <div class="meta">{post.date}</div>
+              <p>{post.description}</p>
+            </article>
+          ))
+        }
+      </section>
+
+      <section class="section" id="tags">
+        <h2>Tags</h2>
+        <p style="color: var(--muted); font-size: 1.15rem; line-height: 1.8; margin: 0;">
+          windows · sysmon · winlog · malware · dfir · detection-engineering
+        </p>
+      </section>
+
+      <footer class="footer">
+        © 2026 ThiendZN. Built with Astro.
+      </footer>
+    </div>
   </body>
 </html>
