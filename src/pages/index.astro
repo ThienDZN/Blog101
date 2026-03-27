@@ -1,11 +1,26 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+title: "Welcome to my Blog!"
+description: "Chào mừng bạn đến với Blog101!"
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{Astro.site.title}</title>
+    <meta name="description" content={Astro.site.description} />
+  </head>
+  <body>
+    <header>
+      <h1>Blog101</h1>
+      <p>{Astro.site.description}</p>
+    </header>
+    <main>
+      <section>
+        <h2>Welcome to my first blog post!</h2>
+        <p>This is just a starting point. I will be posting more soon!</p>
+      </section>
+    </main>
+  </body>
+</html>
