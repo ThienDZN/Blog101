@@ -1,22 +1,21 @@
 ---
 const siteTitle = "Blog101";
-const siteDesc =
-  "Where it all begins";
+const siteDesc = "Where it all begins. Skill issue";
 
 const posts = [
   {
     title: "Winlog and Sysmon 101",
     date: "27 Mar, 2026",
-    description:
-      "Kiến thức cần thiết",
+    description: "Kiến thức cần thiết",
     link: "#",
+    image: "",
   },
   {
     title: "NotThing",
     date: "-- --, 2026",
-    description:
-      "------",
+    description: "------",
     link: "#",
+    image: "/images/nothing.jpg",
   },
 ];
 ---
@@ -29,8 +28,8 @@ const posts = [
     <meta name="description" content={siteDesc} />
     <style>
       :root {
-        --bg: #1f2940;
-        --bg-soft: #24314d;
+        --bg: #182033;
+        --bg-soft: #202b43;
         --text: #f3f4f6;
         --muted: #d6d9df;
         --accent: #f59e0b;
@@ -101,9 +100,27 @@ const posts = [
         padding: 54px 0 26px;
       }
 
+      .hero-title {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .avatar {
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--accent-border);
+        box-shadow:
+          0 0 10px rgba(245, 158, 11, 0.25),
+          0 0 18px rgba(255, 255, 255, 0.12);
+      }
+
       .hero h1 {
-        margin: 0 0 18px;
-        font-size: 3.6rem;
+        margin: 0;
+        font-size: 3.4rem;
         line-height: 1.05;
         letter-spacing: 0.5px;
         text-shadow:
@@ -115,7 +132,7 @@ const posts = [
         margin: 0 0 14px;
         max-width: 820px;
         color: var(--muted);
-        font-size: 1.12rem;
+        font-size: 1.05rem;
         line-height: 1.8;
       }
 
@@ -126,21 +143,31 @@ const posts = [
         gap: 14px;
         flex-wrap: wrap;
         color: var(--muted);
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
 
       .social a {
         text-decoration: none;
         color: var(--text);
         border: 1px solid transparent;
-        padding: 4px 8px;
-        border-radius: 8px;
+        padding: 6px 8px;
+        border-radius: 10px;
         transition: 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .social a:hover {
         color: var(--accent);
         border-color: var(--accent-border);
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.18);
+      }
+
+      .social svg {
+        width: 22px;
+        height: 22px;
+        display: block;
       }
 
       .section {
@@ -156,6 +183,15 @@ const posts = [
 
       .post {
         margin-bottom: 40px;
+      }
+
+      .post-image {
+        width: 100%;
+        max-width: 420px;
+        border-radius: 14px;
+        display: block;
+        margin: 14px 0 14px;
+        border: 1px solid rgba(245, 158, 11, 0.5);
       }
 
       .post-title {
@@ -185,7 +221,7 @@ const posts = [
       .post p {
         margin: 0;
         color: var(--text);
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         line-height: 1.85;
       }
 
@@ -207,12 +243,21 @@ const posts = [
           font-size: 1.9rem;
         }
 
+        .hero-title {
+          align-items: flex-start;
+        }
+
+        .avatar {
+          width: 62px;
+          height: 62px;
+        }
+
         .hero h1 {
-          font-size: 3rem;
+          font-size: 2.8rem;
         }
 
         .hero p {
-          font-size: 1.08rem;
+          font-size: 1rem;
         }
 
         .section h2 {
@@ -220,11 +265,11 @@ const posts = [
         }
 
         .post-title {
-          font-size: 1.45rem;
+          font-size: 1.4rem;
         }
 
         .post p {
-          font-size: 1.05rem;
+          font-size: 1rem;
         }
       }
     </style>
@@ -236,22 +281,54 @@ const posts = [
 
         <nav class="nav">
           <a href="#posts">Posts</a>
-          <a href="#tags">Tags</a>
           <a href="#about">About</a>
         </nav>
       </header>
 
       <section class="hero" id="about">
-        <h1>ThiendZN</h1>
-        <p>
-          Where it all begins
-        </p>
+        <div class="hero-title">
+          <img class="avatar" src="/images/avatar.jpg" alt="Avatar của ThiendZN" />
+          <h1>ThiendZN</h1>
+        </div>
+
+        <p>Where it all begins</p>
 
         <div class="social">
           <span>Social Links:</span>
-          <a href="https://github.com/ThiendZN" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:thiendepzai0202@gmail.com">Email</a>
-          <a href="#">Facebook</a>
+
+          <a
+            href="https://github.com/ThiendZN"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56 0-.28-.01-1.03-.02-2.01-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.72-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.19 1.18a11.1 11.1 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.59.23 2.77.11 3.06.74.8 1.19 1.83 1.19 3.09 0 4.43-2.69 5.41-5.25 5.69.41.35.77 1.03.77 2.08 0 1.5-.01 2.71-.01 3.08 0 .31.21.68.8.56A11.53 11.53 0 0 0 23.5 12.02C23.5 5.66 18.35.5 12 .5Z"/>
+            </svg>
+          </a>
+
+          <a
+            href="mailto:thiendepzai0202@gmail.com"
+            aria-label="Email"
+            title="Email"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.01L12 13l9-5.99V7H3Zm18 10V9.24l-8.47 5.65a1 1 0 0 1-1.06 0L3 9.24V17h18Z"/>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.facebook.com/profile.php?id=61558694875956&mibextid=ZbWKwL"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            title="Facebook"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46h1.68V4.96c-.29-.04-1.27-.12-2.42-.12-2.39 0-4.03 1.46-4.03 4.15V11H8v3h2.18v8h3.32Z"/>
+            </svg>
+          </a>
         </div>
       </section>
 
@@ -263,12 +340,12 @@ const posts = [
             <article class="post">
               <a class="post-title" href={post.link}>{post.title}</a>
               <div class="meta">{post.date}</div>
+              {post.image && <img class="post-image" src={post.image} alt={post.title} />}
               <p>{post.description}</p>
             </article>
           ))
         }
       </section>
-
 
       <footer class="footer">
         © 2026 ThiendZN. Mr. Beast, please collaborate with me..
